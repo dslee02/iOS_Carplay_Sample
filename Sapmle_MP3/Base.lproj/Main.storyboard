@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4dc-sO-od0">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="IGV-Kc-Q7A">
+            <objects>
+                <navigationController id="4dc-sO-od0" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zvK-8y-6PV">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="dm4-yR-Yuc" kind="relationship" relationship="rootViewController" id="8El-GH-639"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SQS-kC-aKr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2" y="101"/>
+        </scene>
+        <!--Audio List-->
+        <scene sceneID="PvX-8t-DfN">
+            <objects>
+                <viewController id="dm4-yR-Yuc" customClass="AudioListViewController" customModule="Sapmle_MP3" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WKb-0f-NGK">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="PN4-Sf-rt4">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myCellType" id="OhC-fe-KuI">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OhC-fe-KuI" id="Lse-Tg-rEF">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="dm4-yR-Yuc" id="HjW-Si-Ttb"/>
+                                    <outlet property="delegate" destination="dm4-yR-Yuc" id="j5P-LS-JUs"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="XYP-NC-wl4"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="PN4-Sf-rt4" firstAttribute="leading" secondItem="XYP-NC-wl4" secondAttribute="leading" id="7ge-zE-oTD"/>
+                            <constraint firstItem="XYP-NC-wl4" firstAttribute="bottom" secondItem="PN4-Sf-rt4" secondAttribute="bottom" id="HpQ-Ez-l2v"/>
+                            <constraint firstItem="XYP-NC-wl4" firstAttribute="trailing" secondItem="PN4-Sf-rt4" secondAttribute="trailing" id="QY9-JM-Q3A"/>
+                            <constraint firstItem="PN4-Sf-rt4" firstAttribute="top" secondItem="XYP-NC-wl4" secondAttribute="top" id="pMk-TC-1hW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Audio List" id="rf7-i1-Lgr"/>
+                    <connections>
+                        <outlet property="tablewView" destination="PN4-Sf-rt4" id="ghr-Fw-QqU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cZV-vN-xfr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="734" y="101"/>
+        </scene>
+        <!--Audio Play View Controller-->
+        <scene sceneID="N25-wt-xPJ">
+            <objects>
+                <viewController storyboardIdentifier="AudioPlayViewController" id="T50-6h-AHC" customClass="AudioPlayViewController" customModule="Sapmle_MP3" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U51-ZC-gZR">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="eTR-Y4-SwQ">
+                                <rect key="frame" x="0.0" y="59" width="393" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mc-oB-ESB">
+                                        <rect key="frame" x="0.0" y="0.0" width="131" height="50"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="backward.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="didTouchBackwardButton:" destination="T50-6h-AHC" eventType="touchUpInside" id="8hG-Gs-I3u"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Swt-ld-v9A">
+                                        <rect key="frame" x="131" y="0.0" width="131" height="50"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="play.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="didTouchPlayButton:" destination="T50-6h-AHC" eventType="touchUpInside" id="gnZ-Sv-jOt"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sga-GN-4gB">
+                                        <rect key="frame" x="262" y="0.0" width="131" height="50"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="forward.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="didTouchForwardButton:" destination="T50-6h-AHC" eventType="touchUpInside" id="TeU-ew-QD3"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Rjh-1w-kvF"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="eh0-6X-VDc"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eTR-Y4-SwQ" firstAttribute="top" secondItem="eh0-6X-VDc" secondAttribute="top" id="AwQ-ak-vC5"/>
+                            <constraint firstItem="eh0-6X-VDc" firstAttribute="trailing" secondItem="eTR-Y4-SwQ" secondAttribute="trailing" id="Jct-mg-XFu"/>
+                            <constraint firstItem="eTR-Y4-SwQ" firstAttribute="leading" secondItem="eh0-6X-VDc" secondAttribute="leading" id="S4G-A9-Ie9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backwardButton" destination="1mc-oB-ESB" id="KuG-Be-TJZ"/>
+                        <outlet property="forwardButton" destination="Sga-GN-4gB" id="CmV-48-9Bk"/>
+                        <outlet property="playButton" destination="Swt-ld-v9A" id="XBT-Qx-aJE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R8Y-aj-LJu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1465" y="101"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="backward.fill" catalog="system" width="128" height="77"/>
+        <image name="forward.fill" catalog="system" width="128" height="77"/>
+        <image name="play.fill" catalog="system" width="117" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
