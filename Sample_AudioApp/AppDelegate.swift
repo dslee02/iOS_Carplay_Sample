@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Sapmle_MP3
+//  Sample_AudioApp
 //
 //  Created by dasol lee on 2023/02/01.
 //

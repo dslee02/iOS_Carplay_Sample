@@ -99,10 +99,13 @@
 		CBBAC7F6299212BD00F51EAB /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = CBBAC7F5299212BD00F51EAB /* thumbnail.png */; };
 		CBBAC7F72992146B00F51EAB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB6C0BEF298A43CF002A76B7 /* MediaPlayer.framework */; };
 		CBBAC7F929935F5000F51EAB /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBAC7F829935F5000F51EAB /* AudioManager.swift */; };
+		CBBAC7FC2993695F00F51EAB /* CarPlaySceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBAC7FB2993695F00F51EAB /* CarPlaySceneDelegate.swift */; };
+		CBBAC8012993721A00F51EAB /* CarPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBBAC8002993721A00F51EAB /* CarPlay.framework */; };
+		CBBAC8032993729A00F51EAB /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBBAC8022993729A00F51EAB /* Entitlements.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CB6C0BD3298A134B002A76B7 /* Sapmle_MP3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sapmle_MP3.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB6C0BD3298A134B002A76B7 /* Sample_AudioApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sample_AudioApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6C0BD6298A134B002A76B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB6C0BD8298A134B002A76B7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CB6C0BDA298A134B002A76B7 /* AudioListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioListViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +199,9 @@
 		CBBAC7A3298CA9C700F51EAB /* EP106_51.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = EP106_51.mp3; sourceTree = "<group>"; };
 		CBBAC7F5299212BD00F51EAB /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail.png; sourceTree = "<group>"; };
 		CBBAC7F829935F5000F51EAB /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		CBBAC7FB2993695F00F51EAB /* CarPlaySceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlaySceneDelegate.swift; sourceTree = "<group>"; };
+		CBBAC8002993721A00F51EAB /* CarPlay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CarPlay.framework; path = System/Library/Frameworks/CarPlay.framework; sourceTree = SDKROOT; };
+		CBBAC8022993729A00F51EAB /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBBAC8012993721A00F51EAB /* CarPlay.framework in Frameworks */,
 				CBBAC7F72992146B00F51EAB /* MediaPlayer.framework in Frameworks */,
 				CBBAC741298C9E2E00F51EAB /* AVFoundation.framework in Frameworks */,
 			);
@@ -214,7 +221,7 @@
 		CB6C0BCA298A134B002A76B7 = {
 			isa = PBXGroup;
 			children = (
-				CB6C0BD5298A134B002A76B7 /* Sapmle_MP3 */,
+				CB6C0BD5298A134B002A76B7 /* Sample_AudioApp */,
 				CB6C0BD4298A134B002A76B7 /* Products */,
 				CB6C0BEE298A43CF002A76B7 /* Frameworks */,
 			);
@@ -223,31 +230,33 @@
 		CB6C0BD4298A134B002A76B7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CB6C0BD3298A134B002A76B7 /* Sapmle_MP3.app */,
+				CB6C0BD3298A134B002A76B7 /* Sample_AudioApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CB6C0BD5298A134B002A76B7 /* Sapmle_MP3 */ = {
+		CB6C0BD5298A134B002A76B7 /* Sample_AudioApp */ = {
 			isa = PBXGroup;
 			children = (
-				CBBAC751298CA1AB00F51EAB /* Manager */,
 				CBBAC744298CA14200F51EAB /* Resource */,
+				CBBAC751298CA1AB00F51EAB /* Manager */,
+				CBBAC8042993781800F51EAB /* UI */,
 				CB6C0BD6298A134B002A76B7 /* AppDelegate.swift */,
 				CB6C0BD8298A134B002A76B7 /* SceneDelegate.swift */,
-				CB6C0BDA298A134B002A76B7 /* AudioListViewController.swift */,
-				CB6C0BEC298A3DDA002A76B7 /* AudioPlayViewController.swift */,
+				CBBAC7FB2993695F00F51EAB /* CarPlaySceneDelegate.swift */,
 				CB6C0BDC298A134B002A76B7 /* Main.storyboard */,
 				CB6C0BDF298A134C002A76B7 /* Assets.xcassets */,
 				CB6C0BE1298A134C002A76B7 /* LaunchScreen.storyboard */,
 				CB6C0BE4298A134C002A76B7 /* Info.plist */,
+				CBBAC8022993729A00F51EAB /* Entitlements.plist */,
 			);
-			path = Sapmle_MP3;
+			path = Sample_AudioApp;
 			sourceTree = "<group>";
 		};
 		CB6C0BEE298A43CF002A76B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CBBAC8002993721A00F51EAB /* CarPlay.framework */,
 				CBBAC740298C9E2E00F51EAB /* AVFoundation.framework */,
 				CB6C0BEF298A43CF002A76B7 /* MediaPlayer.framework */,
 			);
@@ -359,12 +368,21 @@
 			path = Audio;
 			sourceTree = "<group>";
 		};
+		CBBAC8042993781800F51EAB /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				CB6C0BDA298A134B002A76B7 /* AudioListViewController.swift */,
+				CB6C0BEC298A3DDA002A76B7 /* AudioPlayViewController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CB6C0BD2298A134B002A76B7 /* Sapmle_MP3 */ = {
+		CB6C0BD2298A134B002A76B7 /* Sample_AudioApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CB6C0BE7298A134C002A76B7 /* Build configuration list for PBXNativeTarget "Sapmle_MP3" */;
+			buildConfigurationList = CB6C0BE7298A134C002A76B7 /* Build configuration list for PBXNativeTarget "Sample_AudioApp" */;
 			buildPhases = (
 				CB6C0BCF298A134B002A76B7 /* Sources */,
 				CB6C0BD0298A134B002A76B7 /* Frameworks */,
@@ -374,9 +392,9 @@
 			);
 			dependencies = (
 			);
-			name = Sapmle_MP3;
+			name = Sample_AudioApp;
 			productName = Sapmle_MP3;
-			productReference = CB6C0BD3298A134B002A76B7 /* Sapmle_MP3.app */;
+			productReference = CB6C0BD3298A134B002A76B7 /* Sample_AudioApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -394,7 +412,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CB6C0BCE298A134B002A76B7 /* Build configuration list for PBXProject "Sapmle_MP3" */;
+			buildConfigurationList = CB6C0BCE298A134B002A76B7 /* Build configuration list for PBXProject "Sample_AudioApp" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -407,7 +425,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CB6C0BD2298A134B002A76B7 /* Sapmle_MP3 */,
+				CB6C0BD2298A134B002A76B7 /* Sample_AudioApp */,
 			);
 		};
 /* End PBXProject section */
@@ -450,6 +468,7 @@
 				CBBAC7CD298CA9C700F51EAB /* EP106_28.mp3 in Resources */,
 				CBBAC7D9298CA9C700F51EAB /* EP106_23.mp3 in Resources */,
 				CB6C0BDE298A134B002A76B7 /* Main.storyboard in Resources */,
+				CBBAC8032993729A00F51EAB /* Entitlements.plist in Resources */,
 				CBBAC7BF298CA9C700F51EAB /* EP106_22.mp3 in Resources */,
 				CBBAC7D5298CA9C700F51EAB /* EP106_37.mp3 in Resources */,
 				CBBAC7D3298CA9C700F51EAB /* EP106_06.mp3 in Resources */,
@@ -517,6 +536,7 @@
 				CB6C0BD9298A134B002A76B7 /* SceneDelegate.swift in Sources */,
 				CBBAC753298CA1B600F51EAB /* AudioFileManager.swift in Sources */,
 				CB6C0BED298A3DDA002A76B7 /* AudioPlayViewController.swift in Sources */,
+				CBBAC7FC2993695F00F51EAB /* CarPlaySceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,11 +681,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = "$(SOURCE_ROOT)/Sample_AudioApp/Entitlements.plist";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VQCH69RFN4;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = VQCH69RFN4;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Sapmle_MP3/Info.plist;
+				INFOPLIST_FILE = Sample_AudioApp/Info.plist;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "My description about why I need this capability";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -679,8 +701,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "kr.co.sample.Sapmle-MP3";
+				PRODUCT_BUNDLE_IDENTIFIER = "kr.co.sample.carplay-audio";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "sample carplay audio mp3 app profile";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -692,11 +716,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = "$(SOURCE_ROOT)/Sample_AudioApp/Entitlements.plist";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VQCH69RFN4;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = VQCH69RFN4;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Sapmle_MP3/Info.plist;
+				INFOPLIST_FILE = Sample_AudioApp/Info.plist;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "My description about why I need this capability";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -710,8 +736,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "kr.co.sample.Sapmle-MP3";
+				PRODUCT_BUNDLE_IDENTIFIER = "kr.co.sample.carplay-audio";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "sample carplay audio mp3 app profile";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -721,7 +749,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CB6C0BCE298A134B002A76B7 /* Build configuration list for PBXProject "Sapmle_MP3" */ = {
+		CB6C0BCE298A134B002A76B7 /* Build configuration list for PBXProject "Sample_AudioApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CB6C0BE5298A134C002A76B7 /* Debug */,
@@ -730,7 +758,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CB6C0BE7298A134C002A76B7 /* Build configuration list for PBXNativeTarget "Sapmle_MP3" */ = {
+		CB6C0BE7298A134C002A76B7 /* Build configuration list for PBXNativeTarget "Sample_AudioApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CB6C0BE8298A134C002A76B7 /* Debug */,
