@@ -16,7 +16,7 @@ class AudioPlayViewController: UIViewController {
     
     public var audio: AudioFile? {
         didSet {
-            self.title = audio?.name
+            self.title = audio?.name ?? "Empty"
         }
     }
     
@@ -46,6 +46,10 @@ extension AudioPlayViewController: AudioManagerDelegate {
         case .playing: playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
         case .pause: playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
         }
+    }
+    
+    func updatePlayFile(_ audio: AudioFile?) {
+        self.audio = audio
     }
 }
 

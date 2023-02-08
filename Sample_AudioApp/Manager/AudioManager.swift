@@ -17,6 +17,7 @@ enum AudioPlayStatus {
 
 protocol AudioManagerDelegate: NSObjectProtocol {
     func updatePlayStatus(_ status: AudioPlayStatus)
+    func updatePlayFile(_ audio: AudioFile?)
 }
 
 class AudioManager: NSObject {
@@ -91,6 +92,7 @@ class AudioManager: NSObject {
         }
         audioPlayer.play()
         remoteCommandInfoCenterSetting()
+        delegate?.updatePlayFile(audio)
         print(String(describing: audio?.name))
     }
 }
