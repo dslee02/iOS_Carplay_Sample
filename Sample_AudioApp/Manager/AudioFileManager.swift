@@ -9,7 +9,16 @@ import Foundation
 
 struct AudioFile: Equatable {
     let name: String
+    let detailText: String
     let path: URL
+    let thumbnail: String
+    
+    init(name: String, path: URL) {
+        self.name = name
+        self.detailText = "detail Text"
+        self.path = path
+        self.thumbnail = "thumbnail"
+    }
 }
 
 class AudioFileManager {

@@ -143,23 +143,18 @@ extension AudioManager {
     }
     
     private func remoteCommandInfoCenterSetting() {
-        var nowPlayingInfo = [String : Any]()
-        nowPlayingInfo[MPMediaItemPropertyTitle] = "Audio"
-        nowPlayingInfo[MPMediaItemPropertyArtist] = "Artist"
-        
-        if let title = audio?.name {
-            nowPlayingInfo[MPMediaItemPropertyTitle] = title
-        }
+        var nowPlayingInfo: [String: Any] = [MPMediaItemPropertyTitle: audio?.name ?? "Audio",
+                                            MPMediaItemPropertyArtist: "Artist",
+                                            MPMediaItemPropertyPlaybackDuration: audioPlayer.duration,
+                                            MPNowPlayingInfoPropertyPlaybackRate: audioPlayer.rate,
+                                            MPNowPlayingInfoPropertyElapsedPlaybackTime: audioPlayer.currentTime
+                                            ]
         
         if let albumCoverPage = UIImage(named: "thumbnail") {
             nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: albumCoverPage.size, requestHandler: { size in
                 return albumCoverPage
             })
         }
-        
-        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = audioPlayer.duration // 콘텐츠 총 길이
-        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = audioPlayer.rate // 콘텐츠 재생 시간에 따른 progressBar 초기화
-        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = audioPlayer.currentTime // 콘텐츠 현재 재생시간
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
