@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4dc-sO-od0">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -27,7 +28,7 @@
         <!--Audio List-->
         <scene sceneID="PvX-8t-DfN">
             <objects>
-                <viewController id="dm4-yR-Yuc" customClass="AudioListViewController" customModule="Sapmle_MP3" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dm4-yR-Yuc" customClass="AudioListViewController" customModule="Sample_AudioApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WKb-0f-NGK">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -72,16 +73,30 @@
         <!--Audio Play View Controller-->
         <scene sceneID="N25-wt-xPJ">
             <objects>
-                <viewController storyboardIdentifier="AudioPlayViewController" id="T50-6h-AHC" customClass="AudioPlayViewController" customModule="Sapmle_MP3" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AudioPlayViewController" id="T50-6h-AHC" customClass="AudioPlayViewController" customModule="Sample_AudioApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U51-ZC-gZR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lkq-hh-pYp">
+                                <rect key="frame" x="0.0" y="79" width="393" height="31.333333333333329"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yKV-HA-UDr">
+                                <rect key="frame" x="106.66666666666669" y="130.33333333333334" width="180" height="200.00000000000003"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="ZKn-Lu-f65"/>
+                                    <constraint firstAttribute="width" constant="180" id="krg-HK-uRL"/>
+                                </constraints>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="eTR-Y4-SwQ">
-                                <rect key="frame" x="0.0" y="59" width="393" height="50"/>
+                                <rect key="frame" x="0.0" y="360.33333333333331" width="393" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mc-oB-ESB">
                                         <rect key="frame" x="0.0" y="0.0" width="131" height="50"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="backward.fill" catalog="system"/>
                                         <connections>
@@ -90,6 +105,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Swt-ld-v9A">
                                         <rect key="frame" x="131" y="0.0" width="131" height="50"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="play.fill" catalog="system"/>
                                         <connections>
@@ -98,6 +114,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sga-GN-4gB">
                                         <rect key="frame" x="262" y="0.0" width="131" height="50"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="forward.fill" catalog="system"/>
                                         <connections>
@@ -106,22 +123,31 @@
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Sga-GN-4gB" secondAttribute="trailing" id="0lU-o2-EsB"/>
                                     <constraint firstAttribute="height" constant="50" id="Rjh-1w-kvF"/>
+                                    <constraint firstItem="Sga-GN-4gB" firstAttribute="leading" secondItem="Swt-ld-v9A" secondAttribute="trailing" id="y6F-pQ-qj5"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eh0-6X-VDc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="eTR-Y4-SwQ" firstAttribute="top" secondItem="eh0-6X-VDc" secondAttribute="top" id="AwQ-ak-vC5"/>
                             <constraint firstItem="eh0-6X-VDc" firstAttribute="trailing" secondItem="eTR-Y4-SwQ" secondAttribute="trailing" id="Jct-mg-XFu"/>
+                            <constraint firstItem="eh0-6X-VDc" firstAttribute="trailing" secondItem="Lkq-hh-pYp" secondAttribute="trailing" id="RmG-1z-vLT"/>
+                            <constraint firstItem="eTR-Y4-SwQ" firstAttribute="top" secondItem="yKV-HA-UDr" secondAttribute="bottom" constant="30" id="RtW-kR-YcM"/>
                             <constraint firstItem="eTR-Y4-SwQ" firstAttribute="leading" secondItem="eh0-6X-VDc" secondAttribute="leading" id="S4G-A9-Ie9"/>
+                            <constraint firstItem="yKV-HA-UDr" firstAttribute="top" secondItem="Lkq-hh-pYp" secondAttribute="bottom" constant="20" id="UCx-YM-vfh"/>
+                            <constraint firstItem="Lkq-hh-pYp" firstAttribute="top" secondItem="eh0-6X-VDc" secondAttribute="top" constant="20" id="bYN-dh-YzU"/>
+                            <constraint firstItem="yKV-HA-UDr" firstAttribute="centerX" secondItem="eh0-6X-VDc" secondAttribute="centerX" id="bvO-R8-mjz"/>
+                            <constraint firstItem="Lkq-hh-pYp" firstAttribute="leading" secondItem="eh0-6X-VDc" secondAttribute="leading" id="gby-WD-Mrd"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="audioFileTitleLabel" destination="Lkq-hh-pYp" id="NYB-BR-Ia5"/>
                         <outlet property="backwardButton" destination="1mc-oB-ESB" id="KuG-Be-TJZ"/>
                         <outlet property="forwardButton" destination="Sga-GN-4gB" id="CmV-48-9Bk"/>
                         <outlet property="playButton" destination="Swt-ld-v9A" id="XBT-Qx-aJE"/>
+                        <outlet property="thumbnailImageView" destination="yKV-HA-UDr" id="H6d-MK-q1s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R8Y-aj-LJu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -133,6 +159,9 @@
         <image name="backward.fill" catalog="system" width="128" height="77"/>
         <image name="forward.fill" catalog="system" width="128" height="77"/>
         <image name="play.fill" catalog="system" width="117" height="128"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

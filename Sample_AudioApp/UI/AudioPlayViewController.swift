@@ -13,16 +13,23 @@ class AudioPlayViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var backwardButton: UIButton!
     @IBOutlet weak var forwardButton: UIButton!
+    @IBOutlet weak var thumbnailImageView: UIImageView!
+    @IBOutlet weak var audioFileTitleLabel: UILabel!
     
     public var audio: AudioFile? {
         didSet {
-            self.title = audio?.name ?? "Empty"
+            if let audio = audio {
+                audioFileTitleLabel?.text = audio.name
+                thumbnailImageView?.image = UIImage(named: audio.thumbnail)
+            } else {
+                audioFileTitleLabel?.text = "Empty"
+                thumbnailImageView?.image = nil
+            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         AudioManager.shared.delegate = self
         AudioManager.shared.play(audio)
     }

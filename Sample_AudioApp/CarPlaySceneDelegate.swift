@@ -38,6 +38,7 @@ extension CarPlaySceneDelegate: CPTabBarTemplateDelegate {
 }
 
 
+// MARK: - Audio
 extension CarPlaySceneDelegate {
     private func showNowPlayingTemplate(_ audioFile: AudioFile) {
         AudioManager.shared.stop()
@@ -47,7 +48,6 @@ extension CarPlaySceneDelegate {
         nowPlayingTemplate.updateNowPlayingButtons(nowPlayingButtonTemplete())
         interfaceController?.pushTemplate(nowPlayingTemplate, animated: true, completion: nil)
     }
-    
 }
 
 
@@ -83,21 +83,19 @@ extension CarPlaySceneDelegate {
         }
 
         let template = CPGridTemplate(title: "Audio Grid", gridButtons: GridButtons)
-        
         template.tabImage = UIImage(systemName: "rectangle.grid.3x2")
-        
         return template
     }
     
     /// 최대 노출 갯수가 제한이 있는것으로 보임!? 현재 5개 가능
     private func nowPlayingButtonTemplete() -> [CPNowPlayingButton] {
-        let defaultButton = CPNowPlayingButton() { _ in
-            print("defaultButton")
-        }
-        
-        let moreButton = CPNowPlayingMoreButton() { _ in
-            print("moreButton")
-        }
+//        let defaultButton = CPNowPlayingButton() { _ in
+//            print("defaultButton")
+//        }
+//
+//        let moreButton = CPNowPlayingMoreButton() { _ in
+//            print("moreButton")
+//        }
         
         let imageButton = CPNowPlayingImageButton(image: UIImage(named: "thumbnail")!) { _ in
             print("imageButton")
@@ -122,9 +120,3 @@ extension CarPlaySceneDelegate {
         return [imageButton, addToLibraryButton, repeatButton, playbackRateButton, shuffleButton,]
     }
 }
-/**
- let itemA = CPGridButton(titleVariants: ["A"], image: UIImage(named: "thumbnail")!)
- let itemAA = CPGridButton(titleVariants: ["B"], image: UIImage(named: "thumbnail")!)
- let itemAAA = CPGridButton(titleVariants: ["C"], image: UIImage(named: "thumbnail")!)
- let listTemplateA = CPGridTemplate(title: "AA", gridButtons: [itemA, itemAA, itemAAA])
- */
