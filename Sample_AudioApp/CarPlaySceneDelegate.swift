@@ -19,7 +19,7 @@ extension CarPlaySceneDelegate: CPTemplateApplicationSceneDelegate {
     func templateApplicationScene(_ templateApplicationScene: CPTemplateApplicationScene, didConnect interfaceController: CPInterfaceController) {
         self.interfaceController = interfaceController
         
-        let tabTemplates = CPTabBarTemplate(templates: [audioTemplete(), favoriteTemplte(), frameworkUITemplete()])
+        let tabTemplates = CPTabBarTemplate(templates: [audioListTemplete(), audioGridTemplete()])
         tabTemplates.delegate = self
         interfaceController.setRootTemplate(tabTemplates, animated: true, completion: nil)
     }
@@ -38,51 +38,89 @@ extension CarPlaySceneDelegate: CPTabBarTemplateDelegate {
 }
 
 
+extension CarPlaySceneDelegate {
+    private func showNowPlayingTemplate(_ audioFile: AudioFile) {
+        AudioManager.shared.stop()
+        AudioManager.shared.play(audioFile)
+        
+        let nowPlayingTemplate = CPNowPlayingTemplate.shared
+        nowPlayingTemplate.updateNowPlayingButtons(nowPlayingButtonTemplete())
+        nowPlayingTemplate.isUpNextButtonEnabled = true
+        interfaceController?.pushTemplate(nowPlayingTemplate, animated: true, completion: nil)
+    }
+    
+}
+
+
 // MARK: - Make Templete
 extension CarPlaySceneDelegate {
-    private func audioTemplete() -> CPListTemplate {
+    private func audioListTemplete() -> CPListTemplate {
         var listItems = [CPListItem]()
         
         AudioFileManager.shred.list.forEach { audioFile in
             let item = CPListItem(text: audioFile.name, detailText: audioFile.detailText, image: UIImage(named: audioFile.thumbnail))
             item.handler = { playlistItem, completion in
-                AudioManager.shared.play(audioFile)
-                let nowPlayingTemplate = CPNowPlayingTemplate.shared
-                let playingImageButton = CPNowPlayingImageButton(image: UIImage(named: audioFile.thumbnail)!)
-                nowPlayingTemplate.updateNowPlayingButtons([playingImageButton])
-                nowPlayingTemplate.isUpNextButtonEnabled = true
-                nowPlayingTemplate.isAlbumArtistButtonEnabled = true
-                nowPlayingTemplate.isAccessibilityElement = true
-                self.interfaceController?.pushTemplate(nowPlayingTemplate, animated: true, completion: nil)
+                self.showNowPlayingTemplate(audioFile)
                 completion()
             }
             listItems.append(item)
         }
         
-        
-        let sectionA = CPListSection(items: listItems)
-        let template = CPListTemplate(title: "오디오 목록", sections: [sectionA])
-        template.tabImage = UIImage(named: "radio")
-        
-        return template
-    }
-    
-    private func favoriteTemplte() -> CPListTemplate {
-        let itemB = CPListItem(text: "즐겨찾기 아이템 1", detailText: "My detail text", image: UIImage(named: "thumbnail"))
-        let sectionB = CPListSection(items: [itemB])
-        let template = CPListTemplate(title: "즐겨찾기", sections: [sectionB])
-        template.tabImage = UIImage(named: "half_favorite")
+        let section = CPListSection(items: listItems)
+        let template = CPListTemplate(title: "Audio List", sections: [section])
+        template.tabImage = UIImage(systemName: "list.bullet")
         
         return template
     }
     
-    private func frameworkUITemplete() -> CPListTemplate {
-        let itemC = CPListItem(text: "즐겨찾기 아이템 1", detailText: "My detail text", image: UIImage(named: "thumbnail"))
-        let sectionC = CPListSection(items: [itemC])
-        let template = CPListTemplate(title: "UI 목록", sections: [sectionC])
-        template.tabImage = UIImage(systemName: "building.columns")
+    private func audioGridTemplete() -> CPGridTemplate {
+        var GridButtons = [CPGridButton]()
+        
+        AudioFileManager.shred.list.forEach { audioFile in
+            let item = CPGridButton(titleVariants: [audioFile.name], image: UIImage(named: audioFile.thumbnail)!) { _ in
+                self.showNowPlayingTemplate(audioFile)
+            }
+            GridButtons.append(item)
+        }
+
+        let template = CPGridTemplate(title: "Audio Grid", gridButtons: GridButtons)
+        
+        template.tabImage = UIImage(systemName: "rectangle.grid.3x2")
         
         return template
+    }
+    
+    /// 최대 노출 갯수가 제한이 있는것으로 보임!? 현재 5개 가능
+    private func nowPlayingButtonTemplete() -> [CPNowPlayingButton] {
+        let defaultButton = CPNowPlayingButton() { _ in
+            print("defaultButton")
+        }
+        
+        let moreButton = CPNowPlayingMoreButton() { _ in
+            print("moreButton")
+        }
+        
+        let imageButton = CPNowPlayingImageButton(image: UIImage(named: "thumbnail")!) { _ in
+            print("imageButton")
+        }
+        
+        let addToLibraryButton = CPNowPlayingAddToLibraryButton() { _ in
+            print("addToLibraryButton")
+        }
+        
+        let repeatButton = CPNowPlayingRepeatButton() { _ in
+            print("repeatButton")
+        }
+        
+        let playbackRateButton = CPNowPlayingPlaybackRateButton() { _ in
+            print("playbackRateButton")
+        }
+        
+        let shuffleButton = CPNowPlayingShuffleButton() { _ in
+            print("shuffleButton")
+        }
+        
+        return [imageButton, addToLibraryButton, repeatButton, playbackRateButton, shuffleButton,]
     }
 }
 /**

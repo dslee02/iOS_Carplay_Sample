@@ -59,7 +59,7 @@ class AudioManager: NSObject {
         if let audio = audio {
             self.audio = audio
         }
-
+        
         if isPause == true {
             isPause = false
             isPlaying = true
@@ -70,6 +70,11 @@ class AudioManager: NSObject {
             isPlaying = true
             playAudio(self.audio?.path)
         }
+    }
+    
+    public func stop() {
+        audioPlayer.pause()
+        audioPlayer.stop()
     }
     
     public func backward() {
