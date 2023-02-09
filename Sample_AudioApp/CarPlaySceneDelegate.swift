@@ -45,7 +45,6 @@ extension CarPlaySceneDelegate {
         
         let nowPlayingTemplate = CPNowPlayingTemplate.shared
         nowPlayingTemplate.updateNowPlayingButtons(nowPlayingButtonTemplete())
-        nowPlayingTemplate.isUpNextButtonEnabled = true
         interfaceController?.pushTemplate(nowPlayingTemplate, animated: true, completion: nil)
     }
     
