@@ -19,7 +19,7 @@ extension CarPlaySceneDelegate: CPTemplateApplicationSceneDelegate {
     func templateApplicationScene(_ templateApplicationScene: CPTemplateApplicationScene, didConnect interfaceController: CPInterfaceController) {
         self.interfaceController = interfaceController
         
-        let tabTemplates = CPTabBarTemplate(templates: [audioListTemplete(), audioGridTemplete()])
+        let tabTemplates = CPTabBarTemplate(templates: [audioListTemplete(), audioGridTemplete(), libraryTemplete()])
         tabTemplates.delegate = self
         interfaceController.setRootTemplate(tabTemplates, animated: true, completion: nil)
     }
@@ -87,22 +87,33 @@ extension CarPlaySceneDelegate {
         return template
     }
     
+    private func libraryTemplete() -> CPListTemplate {
+        var listItems = [CPListItem]()
+        
+        let alertItem = CPListItem(text: "Alert", detailText: nil)
+        alertItem.handler = { playlistItem, completion in
+            let okAlertAction = CPAlertAction(title: "OK", style: .default) { action in
+                self.interfaceController?.dismissTemplate(animated: true, completion: nil)
+            }
+            let alertTemplate = CPAlertTemplate(titleVariants: ["Alert UI Sample"], actions: [okAlertAction]) /// only one action Item
+            self.interfaceController?.presentTemplate(alertTemplate, animated: true, completion: nil)
+            completion()
+        }
+        listItems.append(alertItem)
+        
+        let section = CPListSection(items: listItems)
+        let template = CPListTemplate(title: "Library UI", sections: [section])
+        return template
+    }
+    
     /// 최대 노출 갯수가 제한이 있는것으로 보임!? 현재 5개 가능
     private func nowPlayingButtonTemplete() -> [CPNowPlayingButton] {
-//        let defaultButton = CPNowPlayingButton() { _ in
-//            print("defaultButton")
-//        }
-//
-//        let moreButton = CPNowPlayingMoreButton() { _ in
-//            print("moreButton")
-//        }
-        
         let imageButton = CPNowPlayingImageButton(image: UIImage(named: "thumbnail")!) { _ in
             print("imageButton")
         }
         
-        let addToLibraryButton = CPNowPlayingAddToLibraryButton() { _ in
-            print("addToLibraryButton")
+        let moreButton = CPNowPlayingMoreButton() { _ in
+            print("moreButton")
         }
         
         let repeatButton = CPNowPlayingRepeatButton() { _ in
@@ -117,6 +128,10 @@ extension CarPlaySceneDelegate {
             print("shuffleButton")
         }
         
-        return [imageButton, addToLibraryButton, repeatButton, playbackRateButton, shuffleButton,]
+//        let addToLibraryButton = CPNowPlayingAddToLibraryButton() { _ in
+//            print("addToLibraryButton")
+//        }
+        
+        return [imageButton, moreButton, repeatButton, playbackRateButton, shuffleButton,]
     }
 }
