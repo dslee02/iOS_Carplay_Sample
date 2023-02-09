@@ -126,7 +126,7 @@ extension AudioManager {
             return .success
         })
         audioSessionHandler.append(commandCenter.stopCommand.addTarget { [unowned self] event in
-            self.play()
+            self.stop()
             return .success
         })
         audioSessionHandler.append(commandCenter.nextTrackCommand.addTarget { [unowned self] event in
