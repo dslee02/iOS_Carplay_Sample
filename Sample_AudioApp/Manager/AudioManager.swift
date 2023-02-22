@@ -63,23 +63,19 @@ class AudioManager: NSObject {
     
     
     // MARK: - Radio
-    public func playRadio(_ radio: Radio) {
+    public func playRadio(_ radio: Radio, _ data: Data) {
         currentMedia = .radio
 
-        Task {
-            guard let data = await radio.audioDataFromURL() else { return }
-            
-            do {
-                self.audioPlayer = try AVAudioPlayer(data: data)
-                self.audioPlayer.delegate = self
-                self.audioPlayer.play()
-            } catch {
-                print(error)
-            }
-            
-            self.remoteCommandInfoCenterSetting(radio)
-            print(String(describing: radio.title))
+        do {
+            audioPlayer = try AVAudioPlayer(data: data)
+            audioPlayer.delegate = self
+            audioPlayer.play()
+        } catch {
+            print(error)
         }
+        
+        remoteCommandInfoCenterSetting(radio)
+        print(String(describing: radio.title))
     }
     
     

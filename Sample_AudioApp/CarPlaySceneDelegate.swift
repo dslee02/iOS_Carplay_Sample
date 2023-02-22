@@ -49,9 +49,9 @@ extension CarPlaySceneDelegate {
         interfaceController?.pushTemplate(nowPlayingTemplate, animated: true, completion: nil)
     }
     
-    private func showNowPlayingTemplate(_ radio: Radio) {
+    private func showNowPlayingTemplate(_ radio: Radio, _ data: Data) {
         AudioManager.shared.stop()
-        AudioManager.shared.playRadio(radio)
+        AudioManager.shared.playRadio(radio, data)
         
         let nowPlayingTemplate = CPNowPlayingTemplate.shared
         nowPlayingTemplate.updateNowPlayingButtons(nowPlayingButtonTemplete())
@@ -102,8 +102,13 @@ extension CarPlaySceneDelegate {
         RadioDataManager.shared.radios.forEach { radio in
             let item = CPListItem(text: radio.title, detailText: radio.subtitle, image: UIImage(named: radio.imageSquareUrl))
             item.handler = { playlistItem, completion in
-                self.showNowPlayingTemplate(radio)
-                completion()
+                Task {
+                    if let radioData = await radio.audioDataFromURL() {
+                        self.showNowPlayingTemplate(radio, radioData)
+                    }
+                    
+                    completion()
+                }
             }
             listItems.append(item)
         }
