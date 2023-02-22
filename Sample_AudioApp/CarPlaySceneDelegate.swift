@@ -19,7 +19,7 @@ extension CarPlaySceneDelegate: CPTemplateApplicationSceneDelegate {
     func templateApplicationScene(_ templateApplicationScene: CPTemplateApplicationScene, didConnect interfaceController: CPInterfaceController) {
         self.interfaceController = interfaceController
         
-        let tabTemplates = CPTabBarTemplate(templates: [audioListTemplete(), audioGridTemplete(), libraryTemplete()])
+        let tabTemplates = CPTabBarTemplate(templates: [audioListTemplete(), audioGridTemplete(), radioListTemplete(), libraryTemplete()])
         tabTemplates.delegate = self
         interfaceController.setRootTemplate(tabTemplates, animated: true, completion: nil)
     }
@@ -43,6 +43,15 @@ extension CarPlaySceneDelegate {
     private func showNowPlayingTemplate(_ audioFile: AudioFile) {
         AudioManager.shared.stop()
         AudioManager.shared.play(audioFile)
+        
+        let nowPlayingTemplate = CPNowPlayingTemplate.shared
+        nowPlayingTemplate.updateNowPlayingButtons(nowPlayingButtonTemplete())
+        interfaceController?.pushTemplate(nowPlayingTemplate, animated: true, completion: nil)
+    }
+    
+    private func showNowPlayingTemplate(_ radio: Radio) {
+        AudioManager.shared.stop()
+        AudioManager.shared.playRadio(radio)
         
         let nowPlayingTemplate = CPNowPlayingTemplate.shared
         nowPlayingTemplate.updateNowPlayingButtons(nowPlayingButtonTemplete())
@@ -84,6 +93,25 @@ extension CarPlaySceneDelegate {
 
         let template = CPGridTemplate(title: "Audio Grid", gridButtons: GridButtons)
         template.tabImage = UIImage(systemName: "rectangle.grid.3x2")
+        return template
+    }
+    
+    private func radioListTemplete() -> CPListTemplate {
+        var listItems = [CPListItem]()
+        
+        RadioDataManager.shared.radios.forEach { radio in
+            let item = CPListItem(text: radio.title, detailText: radio.subtitle, image: UIImage(named: radio.imageSquareUrl))
+            item.handler = { playlistItem, completion in
+                self.showNowPlayingTemplate(radio)
+                completion()
+            }
+            listItems.append(item)
+        }
+        
+        let section = CPListSection(items: listItems)
+        let template = CPListTemplate(title: "Radio List", sections: [section])
+        template.tabImage = UIImage(systemName: "radio")
+        
         return template
     }
     

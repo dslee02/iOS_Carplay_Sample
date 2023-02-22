@@ -102,6 +102,9 @@
 		CBBAC7FC2993695F00F51EAB /* CarPlaySceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBAC7FB2993695F00F51EAB /* CarPlaySceneDelegate.swift */; };
 		CBBAC8012993721A00F51EAB /* CarPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBBAC8002993721A00F51EAB /* CarPlay.framework */; };
 		CBBAC8032993729A00F51EAB /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBBAC8022993729A00F51EAB /* Entitlements.plist */; };
+		CBBAC92329A59FE900F51EAB /* Radio.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBAC92129A59FE800F51EAB /* Radio.swift */; };
+		CBBAC92429A59FE900F51EAB /* radios.json in Resources */ = {isa = PBXBuildFile; fileRef = CBBAC92229A59FE800F51EAB /* radios.json */; };
+		CBBAC92629A5A01100F51EAB /* RadioDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBAC92529A5A01100F51EAB /* RadioDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -202,6 +205,9 @@
 		CBBAC7FB2993695F00F51EAB /* CarPlaySceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlaySceneDelegate.swift; sourceTree = "<group>"; };
 		CBBAC8002993721A00F51EAB /* CarPlay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CarPlay.framework; path = System/Library/Frameworks/CarPlay.framework; sourceTree = SDKROOT; };
 		CBBAC8022993729A00F51EAB /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		CBBAC92129A59FE800F51EAB /* Radio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Radio.swift; sourceTree = "<group>"; };
+		CBBAC92229A59FE800F51EAB /* radios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = radios.json; sourceTree = "<group>"; };
+		CBBAC92529A5A01100F51EAB /* RadioDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,7 +273,8 @@
 			isa = PBXGroup;
 			children = (
 				CBBAC7F5299212BD00F51EAB /* thumbnail.png */,
-				CBBAC7F4298CA9CF00F51EAB /* Audio */,
+				CBBAC7F4298CA9CF00F51EAB /* LocalAudio */,
+				CBBAC92029A59FC400F51EAB /* Radio */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -281,7 +288,7 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
-		CBBAC7F4298CA9CF00F51EAB /* Audio */ = {
+		CBBAC7F4298CA9CF00F51EAB /* LocalAudio */ = {
 			isa = PBXGroup;
 			children = (
 				CBBAC794298CA9C600F51EAB /* EP106_01.mp3 */,
@@ -365,7 +372,7 @@
 				CBBAC77E298CA9C500F51EAB /* EP106_79.mp3 */,
 				CBBAC78F298CA9C600F51EAB /* EP106_80.mp3 */,
 			);
-			path = Audio;
+			path = LocalAudio;
 			sourceTree = "<group>";
 		};
 		CBBAC8042993781800F51EAB /* UI */ = {
@@ -375,6 +382,16 @@
 				CB6C0BEC298A3DDA002A76B7 /* AudioPlayViewController.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		CBBAC92029A59FC400F51EAB /* Radio */ = {
+			isa = PBXGroup;
+			children = (
+				CBBAC92529A5A01100F51EAB /* RadioDataManager.swift */,
+				CBBAC92129A59FE800F51EAB /* Radio.swift */,
+				CBBAC92229A59FE800F51EAB /* radios.json */,
+			);
+			path = Radio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -488,6 +505,7 @@
 				CBBAC7C3298CA9C700F51EAB /* EP106_08.mp3 in Resources */,
 				CBBAC7C6298CA9C700F51EAB /* EP106_49.mp3 in Resources */,
 				CBBAC7BA298CA9C700F51EAB /* EP106_35.mp3 in Resources */,
+				CBBAC92429A59FE900F51EAB /* radios.json in Resources */,
 				CBBAC7AB298CA9C700F51EAB /* EP106_05.mp3 in Resources */,
 				CBBAC7D6298CA9C700F51EAB /* EP106_41.mp3 in Resources */,
 				CBBAC7B9298CA9C700F51EAB /* EP106_14.mp3 in Resources */,
@@ -535,7 +553,9 @@
 				CB6C0BD7298A134B002A76B7 /* AppDelegate.swift in Sources */,
 				CB6C0BD9298A134B002A76B7 /* SceneDelegate.swift in Sources */,
 				CBBAC753298CA1B600F51EAB /* AudioFileManager.swift in Sources */,
+				CBBAC92329A59FE900F51EAB /* Radio.swift in Sources */,
 				CB6C0BED298A3DDA002A76B7 /* AudioPlayViewController.swift in Sources */,
+				CBBAC92629A5A01100F51EAB /* RadioDataManager.swift in Sources */,
 				CBBAC7FC2993695F00F51EAB /* CarPlaySceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

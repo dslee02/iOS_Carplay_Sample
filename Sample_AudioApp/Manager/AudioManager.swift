@@ -15,6 +15,11 @@ enum AudioPlayStatus {
     case pause
 }
 
+enum AudioPlayMedia {
+    case audio
+    case radio
+}
+
 protocol AudioManagerDelegate: NSObjectProtocol {
     func updatePlayStatus(_ status: AudioPlayStatus)
     func updatePlayFile(_ audio: AudioFile?)
@@ -23,6 +28,7 @@ protocol AudioManagerDelegate: NSObjectProtocol {
 class AudioManager: NSObject {
     public static let shared = AudioManager()
     public weak var delegate: AudioManagerDelegate?
+    public var currentMedia: AudioPlayMedia = .audio
     public var audio: AudioFile?
     private var audioSessionHandler: [Any?] = [Any?]()
     private var audioPlayer = AVAudioPlayer()
@@ -55,7 +61,32 @@ class AudioManager: NSObject {
         removeRemoteTransportControls()
     }
     
+    
+    // MARK: - Radio
+    public func playRadio(_ radio: Radio) {
+        currentMedia = .radio
+
+        Task {
+            guard let data = await radio.audioDataFromURL() else { return }
+            
+            do {
+                self.audioPlayer = try AVAudioPlayer(data: data)
+                self.audioPlayer.delegate = self
+                self.audioPlayer.play()
+            } catch {
+                print(error)
+            }
+            
+            self.remoteCommandInfoCenterSetting(radio)
+            print(String(describing: radio.title))
+        }
+    }
+    
+    
+    // MARK: - Audio
     public func play(_ audio: AudioFile? = nil) {
+        currentMedia = .audio
+        
         if let audio = audio {
             self.audio = audio
         }
@@ -78,11 +109,15 @@ class AudioManager: NSObject {
     }
     
     public func backward() {
+        guard currentMedia == .audio else { return }
+        
         audio = AudioFileManager.shred.backwardAudioFile(audio)
         playAudio(audio?.path)
     }
     
     public func forward() {
+        guard currentMedia == .audio else { return }
+        
         audio = AudioFileManager.shred.forwardAudioFile(audio)
         playAudio(audio?.path)
     }
@@ -150,12 +185,29 @@ extension AudioManager {
     private func remoteCommandInfoCenterSetting() {
         var nowPlayingInfo: [String: Any] = [MPMediaItemPropertyTitle: audio?.name ?? "Audio",
                                             MPMediaItemPropertyArtist: "Artist",
-                                            MPMediaItemPropertyPlaybackDuration: audioPlayer.duration,
-                                            MPNowPlayingInfoPropertyPlaybackRate: audioPlayer.rate,
-                                            MPNowPlayingInfoPropertyElapsedPlaybackTime: audioPlayer.currentTime
-                                            ]
+                                  MPMediaItemPropertyPlaybackDuration: audioPlayer.duration,
+                                 MPNowPlayingInfoPropertyPlaybackRate: audioPlayer.rate,
+                          MPNowPlayingInfoPropertyElapsedPlaybackTime: audioPlayer.currentTime
+        ]
         
         if let albumCoverPage = UIImage(named: "thumbnail") {
+            nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: albumCoverPage.size, requestHandler: { size in
+                return albumCoverPage
+            })
+        }
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+    }
+    
+    private func remoteCommandInfoCenterSetting(_ radio: Radio) {
+        var nowPlayingInfo: [String: Any] = [MPMediaItemPropertyTitle: radio.title ,
+                                            MPMediaItemPropertyArtist: radio.subtitle,
+                                  MPMediaItemPropertyPlaybackDuration: audioPlayer.duration,
+                                 MPNowPlayingInfoPropertyPlaybackRate: audioPlayer.rate,
+                          MPNowPlayingInfoPropertyElapsedPlaybackTime: audioPlayer.currentTime
+        ]
+        
+        if let albumCoverPage = UIImage(named: radio.imageUrl) {
             nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: albumCoverPage.size, requestHandler: { size in
                 return albumCoverPage
             })
